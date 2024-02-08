@@ -1,12 +1,8 @@
 import http from 'http';
+import { userRouter } from './router/userRouter';
 
-const server = http.createServer((req, res) => {
-  const { method, url } = req;
-
-  res.setHeader('Content-Type', 'application/json');
-  console.log(method, url);
-  res.end(JSON.stringify({ message: 'Hello World' }));
-
+const server = http.createServer( async (req, res) => {
+  await userRouter(req, res);
 });
 
 const PORT = process.env.PORT || 3000;
