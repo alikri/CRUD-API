@@ -1,5 +1,7 @@
 import http from 'http';
+import { config } from 'dotenv';
 import { dispatcher } from './dispatcher/dispatcher';
+config();
 
 const server = http.createServer( async (req, res) => {
   await dispatcher(req, res);
