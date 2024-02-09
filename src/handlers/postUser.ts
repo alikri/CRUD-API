@@ -10,6 +10,6 @@ export async function postUser(req: IncomingMessage, res: ServerResponse) {
   if (newUser) {
     sendJSONResponse(res, 201, newUser);
   } else {
-    errorResponse(res, 400, 'Missing one of the required fields or ivalid data type: username: string, age: number, hobbies: array of strings')
+    errorResponse(res, 400, 'Invalid Data')
   }
 }
