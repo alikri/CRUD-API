@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { errorResponse } from '../utils/errorResponses';
+import { sendErrorResponse } from '../utils/sendErrorResponses';
 import { getUser } from '../handlers/getUser';
 import { postUser } from '../handlers/postUser';
 import { putUser } from '../handlers/putUser';
@@ -21,7 +21,7 @@ export async function dispatcher(req: IncomingMessage, res: ServerResponse) {
   try {
     if (url?.startsWith('/api/users')) {
       if (id && !isValidUuid(id)) {
-        errorResponse(res, 400);
+        sendErrorResponse(res, 400);
         return;
       }
     
@@ -40,24 +40,24 @@ export async function dispatcher(req: IncomingMessage, res: ServerResponse) {
           if (id) {
             await putUser(req, res, id);
           } else {
-            errorResponse(res, 404, 'Missing user ID');
+            sendErrorResponse(res, 404, 'Missing user ID');
           }
           break;
         case HttpMethod.DELETE:
           if (id) {
             deleteUser(res, id);
           } else {
-            errorResponse(res, 404, 'Missing user ID');
+            sendErrorResponse(res, 404, 'Missing user ID');
           }
           break;
         default:
-          errorResponse(res, 500);
+          sendErrorResponse(res, 500);
           break;
       }
     } else {
-      errorResponse(res, 404, 'Address not found');
+      sendErrorResponse(res, 404, 'Address not found');
     }
   } catch (error) {
-    errorResponse(res, 500);
+    sendErrorResponse(res, 500);
   }
 }

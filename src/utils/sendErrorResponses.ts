@@ -10,7 +10,7 @@ const codeMessage: CodeMessage = {
   500: 'Internal Server Error',
 };
 
-export const errorResponse = (res: ServerResponse, statusCode: number, customMessage?: string) => {
+export const sendErrorResponse = (res: ServerResponse, statusCode: number, customMessage?: string) => {
   res.writeHead(statusCode, { 'Content-Type': 'application/json' });
   res.end(JSON.stringify({ message: customMessage ? customMessage : codeMessage[statusCode] }));
 };

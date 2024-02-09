@@ -2,7 +2,7 @@ import { IncomingMessage, ServerResponse } from 'http';
 import { sendJSONResponse } from '../utils/sendResponse';
 import { db } from '../db/InMemoryDB';
 import { parseBody } from '../utils/parseBody';
-import { errorResponse } from '../utils/errorResponses';
+import { sendErrorResponse } from '../utils/sendErrorResponses';
 
 export async function postUser(req: IncomingMessage, res: ServerResponse) {
   try {
@@ -11,9 +11,9 @@ export async function postUser(req: IncomingMessage, res: ServerResponse) {
     if (newUser) {
       sendJSONResponse(res, 201, newUser);
     } else {
-      errorResponse(res, 400, 'Invalid Data');
+      sendErrorResponse(res, 400, 'Invalid Data');
     }
   } catch (error) {
-    errorResponse(res, 500);
+    sendErrorResponse(res, 500);
   }
 }
