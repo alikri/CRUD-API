@@ -1,8 +1,8 @@
 import http from 'http';
-import { userRouter } from './router/userRouter';
+import { dispatcher } from './dispatcher/dispatcher';
 
 const server = http.createServer( async (req, res) => {
-  await userRouter(req, res);
+  await dispatcher(req, res);
 });
 
 const PORT = process.env.PORT || 3000;
