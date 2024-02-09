@@ -1,7 +1,7 @@
 import { ServerResponse } from 'http';
 import { sendJSONResponse } from '../utils/sendResponse';
 import { db } from '../db/InMemoryDB'; 
-import { errorResponse } from 'utils/errorResponses';
+import { errorResponse } from '../utils/errorResponses';
 
 export function getUser(res: ServerResponse, id: string) {
   const response = db.findUserById(id);

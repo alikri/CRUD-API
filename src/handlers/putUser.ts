@@ -2,7 +2,7 @@ import { IncomingMessage, ServerResponse } from 'http';
 import { sendJSONResponse } from '../utils/sendResponse';
 import { db } from '../db/InMemoryDB';
 import { parseBody } from '../utils/parseBody';
-import { errorResponse } from 'utils/errorResponses';
+import { errorResponse } from '../utils/errorResponses';
 
 export async function putUser(req: IncomingMessage, res: ServerResponse, id: string) {
     const userData = await parseBody(req);

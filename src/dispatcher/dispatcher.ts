@@ -1,11 +1,11 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { errorResponse } from 'utils/errorResponses';
+import { errorResponse } from '../utils/errorResponses';
 import { getUser } from '../handlers/getUser';
 import { postUser } from '../handlers/postUser';
 import { putUser } from '../handlers/putUser';
 import { deleteUser } from '../handlers/deleteUser';
 import { getAllUsers } from '../handlers/getAllUsers';
-import { isValidUuid } from 'utils/validateUuid';
+import { isValidUuid } from '../utils/validateUuid';
 
 enum HttpMethod {
   GET = 'GET',
