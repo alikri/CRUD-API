@@ -55,7 +55,7 @@ export async function dispatcher(req: IncomingMessage, res: ServerResponse) {
           break;
       }
     } else {
-      errorResponse(res, 404, 'Adress not found');
+      errorResponse(res, 404, 'Address not found');
     }
   } catch (error) {
     errorResponse(res, 500);
