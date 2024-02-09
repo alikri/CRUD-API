@@ -4,7 +4,6 @@ import { db } from '../db/InMemoryDB';
 
 export function getAllUsers(res: ServerResponse): void {
   const response = db.findAllUsers();
-  console.log(response);
   if (response.length !== 0) {
     sendJSONResponse(res, 200, response);
   } else {
