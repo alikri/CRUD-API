@@ -6,6 +6,13 @@ import { putUser } from '../handlers/putUser';
 import { deleteUser } from '../handlers/deleteUser';
 import { getAllUsers } from '../handlers/getAllUsers';
 
+enum HttpMethod {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+}
+
 export async function dispatcher(req: IncomingMessage, res: ServerResponse) {
   const { method, url } = req;
   const id = url?.split('/')[3];
@@ -13,24 +20,24 @@ export async function dispatcher(req: IncomingMessage, res: ServerResponse) {
   try {
     if (url?.startsWith('/api/users')) {
       switch (method) {
-        case 'GET':
+        case HttpMethod.GET:
           if (id) {
             getUser(res, id);
           } else {
             getAllUsers(res);
           }
           break;
-        case 'POST':
+        case HttpMethod.POST:
           postUser(req, res);
           break;
-        case 'PUT':
+        case HttpMethod.PUT:
           if (id) {
             await putUser(req, res, id);
           } else {
             ErrorResponse(res, 400);
           }
           break;
-        case 'DELETE':
+        case HttpMethod.DELETE:
           if (id) {
             deleteUser(res, id);
           } else {
