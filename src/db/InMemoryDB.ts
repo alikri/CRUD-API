@@ -12,7 +12,19 @@ export interface User {
 export class InMemoryDB {
   private users: User[] = data;
 
-  createUser(user: Omit<User, 'id'>): User {
+  createUser(user: Omit<User, 'id'>): User | false {
+    const { username, age, hobbies } = user;
+    if (
+      typeof username !== 'string' ||
+      username.trim() === '' ||
+      typeof age !== 'number' ||
+      age <= 0 ||
+      !Array.isArray(hobbies) ||
+      hobbies.some((hobby) => typeof hobby !== 'string')
+    ) {
+      return false; 
+    }
+
     const newUser: User = { id: uuidv4(), ...user };
     this.users.push(newUser);
     return newUser;
