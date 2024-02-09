@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from 'uuid';
-import { data } from '../mockData/usersDefaultData';
 
 export interface User {
   id: string;
@@ -10,7 +9,7 @@ export interface User {
 
 
 export class InMemoryDB {
-  private users: User[] = data;
+  private users: User[] = [];
 
   createUser(user: Omit<User, 'id'>): User | false {
     const { username, age, hobbies } = user;
