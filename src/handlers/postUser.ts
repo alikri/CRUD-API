@@ -5,15 +5,15 @@ import { parseBody } from '../utils/parseBody';
 import { errorResponse } from '../utils/errorResponses';
 
 export async function postUser(req: IncomingMessage, res: ServerResponse) {
-   try {
-     const userData = await parseBody(req);
-     const newUser = db.createUser(userData);
-     if (newUser) {
-       sendJSONResponse(res, 201, newUser);
-     } else {
-       errorResponse(res, 400, 'Invalid Data');
-     }
-   } catch (error) {
-     errorResponse(res, 500);
-   }
+  try {
+    const userData = await parseBody(req);
+    const newUser = db.createUser(userData);
+    if (newUser) {
+      sendJSONResponse(res, 201, newUser);
+    } else {
+      errorResponse(res, 400, 'Invalid Data');
+    }
+  } catch (error) {
+    errorResponse(res, 500);
+  }
 }
