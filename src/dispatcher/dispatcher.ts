@@ -6,6 +6,7 @@ import { putUser } from '../handlers/putUser';
 import { deleteUser } from '../handlers/deleteUser';
 import { getAllUsers } from '../handlers/getAllUsers';
 import { isValidUuid } from '../utils/validateUuid';
+import { InMemoryDB } from '../db/InMemoryDB';
 
 enum HttpMethod {
   GET = 'GET',
@@ -14,7 +15,7 @@ enum HttpMethod {
   DELETE = 'DELETE',
 }
 
-export async function dispatcher(req: IncomingMessage, res: ServerResponse) {
+export async function dispatcher(req: IncomingMessage, res: ServerResponse, db: InMemoryDB) {
   console.log(`Request handled by pid ${process.pid}`);
 
   const { method, url } = req;
@@ -26,28 +27,28 @@ export async function dispatcher(req: IncomingMessage, res: ServerResponse) {
         sendErrorResponse(res, 400);
         return;
       }
-    
+
       switch (method) {
         case HttpMethod.GET:
           if (id) {
-            getUser(res, id);
+            getUser(res, id, db);
           } else {
-            getAllUsers(res);
+            getAllUsers(res, db);
           }
           break;
         case HttpMethod.POST:
-          postUser(req, res);
+          postUser(req, res, db);
           break;
         case HttpMethod.PUT:
           if (id) {
-            await putUser(req, res, id);
+            await putUser(req, res, id, db);
           } else {
             sendErrorResponse(res, 404, 'Missing user ID');
           }
           break;
         case HttpMethod.DELETE:
           if (id) {
-            deleteUser(res, id);
+            deleteUser(res, id, db);
           } else {
             sendErrorResponse(res, 404, 'Missing user ID');
           }

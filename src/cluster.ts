@@ -2,13 +2,16 @@ import os from 'os';
 import http from 'http';
 import cluster from 'cluster';
 import { dispatcher } from './dispatcher/dispatcher';
+import { InMemoryDB } from './db/InMemoryDB';
 
-const BASE_PORT = Number(process.env.PORT || 3000);
+const BASE_PORT = 4000;
 const numWorkers = os.cpus().length;
 const workersPorts: number[] = [];
+let db = { store: new InMemoryDB() };
 
 export const multiMode = async () => {
   if (cluster.isPrimary) {
+
     console.log(`Primary ${process.pid} is running`);
 
     for (let i = 1; i <= numWorkers; i++) {
@@ -45,7 +48,7 @@ export const multiMode = async () => {
     const port = Number(process.env.PORT);
     http
       .createServer((_req, res) => {
-        dispatcher(_req, res);
+        dispatcher(_req, res, db.store);
       })
       .listen(port, () => console.log(`Worker ${process.pid} started, listening on port ${port}`));
   }

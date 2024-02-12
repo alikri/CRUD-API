@@ -1,10 +1,10 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { sendJSONResponse } from '../utils/sendResponse';
-import { db } from '../db/InMemoryDB';
 import { parseBody } from '../utils/parseBody';
 import { sendErrorResponse } from '../utils/sendErrorResponses';
+import { InMemoryDB } from '../db/InMemoryDB';
 
-export async function postUser(req: IncomingMessage, res: ServerResponse) {
+export async function postUser(req: IncomingMessage, res: ServerResponse, db: InMemoryDB) {
   try {
     const userData = await parseBody(req);
     const newUser = db.createUser(userData);

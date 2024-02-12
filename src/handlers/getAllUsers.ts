@@ -1,9 +1,8 @@
 import { ServerResponse } from 'http';
 import { sendJSONResponse } from '../utils/sendResponse';
-import { db } from '../db/InMemoryDB';
+import { InMemoryDB } from '../db/InMemoryDB';
 
-export function getAllUsers(res: ServerResponse): void {
+export function getAllUsers(res: ServerResponse, db: InMemoryDB): void {
   const response = db.findAllUsers();
   sendJSONResponse(res, 200, response);
-  
 }

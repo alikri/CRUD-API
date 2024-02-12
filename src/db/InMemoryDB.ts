@@ -56,4 +56,3 @@ export class InMemoryDB {
   }
 }
 
-export const db = new InMemoryDB();
