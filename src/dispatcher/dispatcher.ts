@@ -15,6 +15,8 @@ enum HttpMethod {
 }
 
 export async function dispatcher(req: IncomingMessage, res: ServerResponse) {
+  console.log(`Request handled by pid ${process.pid}`);
+
   const { method, url } = req;
   const id = url?.split('/')[3];
 

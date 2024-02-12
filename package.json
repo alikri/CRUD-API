@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon src/server.ts",
     "start:prod": "npm run build && node dist/server.js",
+    "start:multi": "cross-env MODE=cluster nodemon src/server.ts",
     "build": "tsc && webpack --config webpack.config.js",
     "format:fix": "prettier --config .prettierrc.cjs \"src/**/*.{ts,css}\" --write",
     "format": "prettier --config .prettierrc.cjs \"src/**/*.{ts,css}\" --check",
