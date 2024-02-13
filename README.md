@@ -9,7 +9,7 @@ using npm:
 - **clone repository:** `git clone https://github.com/alikri/CRUD-API.git`
 - **navigate to the project directory:** `cd CRUD-API`
 - **install dependencies:** `npm install`
-- **create .env file in root directory based on the .env.example:** ``
+- **create .env file in root directory based on the .env.example** 
 - **start development server:** `npm run start:dev`
 - **start production server:** `npm run start:prod`
 - **start workers processes:** `npm run start:multi`
