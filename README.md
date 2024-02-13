@@ -24,8 +24,8 @@ In the project directory, you can run the following commands:
 - `npm run start:prod`: runs the app in production mode.
 - `npm run format`: checks your code using Prettier according to the rules in `.prettierrc.js`.
 - `npm run format:fix`: formats your code using Prettier according to the rules in `.prettierrc.js`.
-- `npm run lint`: currently not availabe`.
-- `npm run lint:fix`: currently not navailabe`.
+- `npm run lint`: currently not availabe.
+- `npm run lint:fix`: currently not navailabe.
 
 
 
